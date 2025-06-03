@@ -34,5 +34,11 @@
     "description": "Une application web pour suvre vos abonnements et de les comparer.",
     "image": "./img/subtrack.png",
     "link": "https://tracksub.netlify.app/"
+  },
+  {
+    "title": "Fruity Bean",
+    "description": "Un site pour un café fruité.",
+    "image": "./img/fruitybean.png",
+    "link": "https://fruitybean.netlify.app/"
   }
 ]
