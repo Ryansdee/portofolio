@@ -40,5 +40,11 @@
     "description": "Un site pour un café fruité.",
     "image": "./img/fruitybean.png",
     "link": "https://fruitybean.netlify.app/"
+  },
+  {
+    "title": "Shift Planner",
+    "description": "Une application web pour planifier les shifts des employés. Entreprise Secret.",
+    "image": "./img/shiftplanner.webp",
+    "link": "https://example.com/"
   }
 ]
