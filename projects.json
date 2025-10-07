@@ -24,12 +24,6 @@
     "link": "https://garagelaurent.be/"
   },
   {
-    "title" : "PickLink",
-    "description" : "Un site d'une ASBL qui lutte contre le cyberharcèlement.",
-    "image" : "./img/picklink.png",
-    "link" : "https://picklink.be/"
-  },
-  {
     "title": "SubTrack",
     "description": "Une application web pour suvre vos abonnements et de les comparer.",
     "image": "./img/subtrack.png",
@@ -42,9 +36,9 @@
     "link": "https://fruitybean.netlify.app/"
   },
   {
-    "title": "Shift Planner",
-    "description": "Une application web pour planifier les shifts des employés. Entreprise Secret.",
-    "image": "./img/shiftplanner.webp",
-    "link": "https://example.com/"
+    "title": "Vadim Thevelin portfolio",
+    "description": "Un site portfolio pour Vadim Thevelin, un photographe.",
+    "image": "./img/vadim.png",
+    "link": "https://vath-portofolio.netlify.app/"
   }
 ]
