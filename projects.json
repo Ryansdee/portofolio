@@ -36,9 +36,33 @@
     "link": "https://fruitybean.netlify.app/"
   },
   {
+    "title": "Books & Bites",
+    "description": "Un site pour les reviews de 3 amies",
+    "image": "./img/booksandbites.png",
+    "link": "https://books-and-bites.netlify.app/"
+  },
+  {
     "title": "Vadim Thevelin portfolio",
     "description": "Un site portfolio pour Vadim Thevelin, un photographe.",
     "image": "./img/vadim.png",
     "link": "https://vath-portofolio.netlify.app/"
+  },
+  {
+    "title": "LiquidFlow",
+    "description": "Un site pour une boutique de vente de pc gamers.",
+    "image": "./img/liquidflow.png",
+    "link": "https://liquidflow.netlify.app/"
+  },
+  {
+    "title" : "Ryan Market",
+    "description": "Un site vitrine de mes pc mise en vente sur facebook marketplace.",
+    "image": "./img/ryanmarket.png",
+    "link": "https://ryanmarket.netlify.app/"
+  },
+  {
+    "title": "Ryansdee Workflow",
+    "description": "Un site pour présenter mon workflow de développement avec mes clients.",
+    "image": "./img/workflow.png",
+    "link": "https://ryansdee-workflow.netlify.app/"
   }
 ]
