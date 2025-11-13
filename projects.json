@@ -64,5 +64,11 @@
     "description": "Un site pour présenter mon workflow de développement avec mes clients.",
     "image": "./img/workflow.png",
     "link": "https://ryansdee-workflow.netlify.app/"
+  },
+  {
+    "title": "Woppy",
+    "description": "Connectez-vous avec des étudiants talentueux disponibles pour des emplois flexibles dans votre région.",
+    "image": "./img/woppy.png",
+    "link": "https://woppy.netlify.app/"
   }
 ]
