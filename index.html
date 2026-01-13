@@ -1,691 +1,225 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="fr" class="scroll-smooth">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Ryan Deschuyteneer - Développeur Web & Technicien IT</title>
+  <title>Ryan Deschuyteneer | Développeur Web & Expert IT</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <style>
-    * {
-      font-family: 'Space Grotesk', sans-serif;
-      scroll-behavior: smooth;
-    }
-    
-    body {
-      background: #0a0a0a;
-      color: #e5e5e5;
-    }
-    
-    /* Subtle grid background */
-    .grid-bg {
-      background-image: 
-        linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
-      background-size: 50px 50px;
-    }
-    
-    /* Minimal accent color - only white/gray */
-    .accent-line {
-      height: 2px;
-      background: linear-gradient(90deg, transparent, #fff, transparent);
-    }
-    
-    nav {
-      backdrop-filter: blur(20px);
-      background: rgba(10, 10, 10, 0.8);
-      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    }
-    
-    .card-dark {
-      background: rgba(20, 20, 20, 0.6);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      backdrop-filter: blur(10px);
-      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-    
-    .card-dark:hover {
-      background: rgba(30, 30, 30, 0.8);
-      border-color: rgba(255, 255, 255, 0.2);
-      transform: translateY(-4px);
-    }
-    
-    .skill-card {
-      transition: all 0.3s ease;
-    }
-    
-    .skill-card:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
-    }
-    
-    .project-card {
-      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-      position: relative;
-      overflow: hidden;
-    }
-    
-    .project-card::after {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: -100%;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.05), transparent);
-      transition: left 0.6s;
-    }
-    
-    .project-card:hover::after {
-      left: 100%;
-    }
-    
-    .project-card:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 25px 50px rgba(0, 0, 0, 0.8);
-    }
-    
-    .btn-primary {
-      background: #fff;
-      color: #0a0a0a;
-      transition: all 0.3s ease;
-      font-weight: 600;
-    }
-    
-    .btn-primary:hover {
-      background: #e5e5e5;
-      transform: translateY(-2px);
-      box-shadow: 0 10px 30px rgba(255, 255, 255, 0.2);
-    }
-    
-    .btn-secondary {
-      background: transparent;
-      border: 1px solid rgba(255, 255, 255, 0.3);
-      color: #fff;
-      transition: all 0.3s ease;
-    }
-    
-    .btn-secondary:hover {
-      background: rgba(255, 255, 255, 0.1);
-      border-color: rgba(255, 255, 255, 0.5);
-    }
-    
-    .section-title::after {
-      content: '';
-      position: absolute;
-      bottom: -12px;
-      left: 0;
-      width: 60px;
-      height: 2px;
-      background: #fff;
-    }
-    
-    input, textarea {
-      background: rgba(20, 20, 20, 0.6);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      color: #fff;
-      transition: all 0.3s ease;
-    }
-    
-    input:focus, textarea:focus {
-      outline: none;
-      border-color: rgba(255, 255, 255, 0.3);
-      background: rgba(30, 30, 30, 0.8);
-    }
-    
-    input::placeholder, textarea::placeholder {
-      color: rgba(255, 255, 255, 0.3);
-    }
-    
-    .social-icon {
-      transition: all 0.3s ease;
-      filter: brightness(0.8);
-    }
-    
-    .social-icon:hover {
-      filter: brightness(1.2);
-      transform: translateY(-4px);
-    }
-    
-    /* Image grayscale effect */
-    .profile-img {
-      filter: grayscale(20%);
-      transition: all 0.3s ease;
-    }
-    
-    .profile-img:hover {
-      filter: grayscale(0%);
-    }
-    
-    /* Fade in animations */
-    .fade-in-up {
-      opacity: 0;
-      transform: translateY(30px);
-      animation: fadeInUp 0.8s ease forwards;
-    }
-    
-    @keyframes fadeInUp {
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-    
-    .stagger-1 { animation-delay: 0.1s; }
-    .stagger-2 { animation-delay: 0.2s; }
-    .stagger-3 { animation-delay: 0.3s; }
-    .stagger-4 { animation-delay: 0.4s; }
-    
-    /* Terminal-like monospace for code */
-    .mono {
-      font-family: 'Courier New', monospace;
-    }
-  </style>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
-<body class="text-gray-100">
+<body class="grid-bg">
 
-<!-- Navigation -->
-<nav class="py-4 px-6 sticky top-0 z-50">
-  <div class="max-w-7xl mx-auto flex items-center justify-between">
-    <div class="text-xl font-bold text-white">Ryan Deschuyteneer</div>
-    <div class="hidden md:flex space-x-8 text-sm font-medium">
-      <a href="#about" class="text-gray-400 hover:text-white transition duration-300">À propos</a>
-      <a href="#skills" class="text-gray-400 hover:text-white transition duration-300">Compétences</a>
-      <a href="#projects" class="text-gray-400 hover:text-white transition duration-300">Projets</a>
-      <a href="#contact" class="text-gray-400 hover:text-white transition duration-300">Contact</a>
+<nav class="fixed w-full z-50 transition-all duration-300 py-6" id="navbar">
+  <div class="max-w-7xl mx-auto px-6 flex justify-between items-center">
+    <div class="text-xl font-extrabold tracking-tighter">RYAN<span class="text-gray-500">.</span>D</div>
+    
+    <div class="hidden md:flex space-x-8 text-[13px] font-medium uppercase tracking-widest">
+      <a href="#about" class="text-gray-400 hover:text-white transition">Expertise</a>
+      <a href="#projects" class="text-gray-400 hover:text-white transition">Projets</a>
+      <a href="#contact" class="text-gray-400 hover:text-white transition">Contact</a>
     </div>
-    <div class="hidden md:block">
-      <a href="#contact" class="btn-primary px-6 py-2.5 rounded text-sm font-semibold inline-block">
-        Me contacter
-      </a>
-    </div>
-    <button id="mobile-menu-btn" class="md:hidden text-white focus:outline-none" aria-label="Toggle menu">
-      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-        <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
-      </svg>
-    </button>
-  </div>
-  <div id="mobile-menu" class="md:hidden hidden mt-4 px-4 space-y-3 text-sm font-medium pb-4">
-    <a href="#about" class="block text-gray-400 hover:text-white py-2">À propos</a>
-    <a href="#skills" class="block text-gray-400 hover:text-white py-2">Compétences</a>
-    <a href="#projects" class="block text-gray-400 hover:text-white py-2">Projets</a>
-    <a href="#contact" class="btn-primary px-4 py-2 rounded inline-block">Me contacter</a>
+
+    <a href="#contact" class="glass px-6 py-2.5 rounded-full text-xs font-bold uppercase tracking-widest hover:bg-white hover:text-black transition duration-500">
+      Discutons d'un projet
+    </a>
   </div>
 </nav>
 
-<!-- Hero Section -->
-<section class="relative overflow-hidden py-24 px-6 grid-bg" id="about">
-  <div class="max-w-6xl mx-auto">
-    <div class="flex flex-col md:flex-row items-center gap-16">
-      <div class="relative">
-        <div class="absolute inset-0 bg-white/5 rounded-lg blur-3xl"></div>
-        <img src="https://i.ibb.co/JWS9FLj2/Ryan.png" 
-             alt="Photo de Ryan Deschuyteneer" 
-             class="profile-img relative rounded-lg w-72 h-72 object-cover border border-white/10 shadow-2xl" />
+<section id="about" class="min-h-screen flex items-center pt-20 px-6">
+  <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-16 items-center">
+    <div class="reveal">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-white/10 mb-6 bg-white/5">
+        <span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
+        <span class="text-[10px] font-bold uppercase tracking-widest text-gray-400">Disponible Immédiatement</span>
       </div>
-      <div class="flex-1 text-center md:text-left space-y-6">
-        <div class="fade-in-up stagger-1">
-          <div class="inline-block mb-4">
-            <span class="text-gray-500 text-xs uppercase tracking-widest mono">// Développeur Web & Technicien IT</span>
-          </div>
-          <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-white">
-            Ryan Deschuyteneer
-          </h1>
-        </div>
-        <p class="text-gray-400 text-lg leading-relaxed max-w-2xl fade-in-up stagger-2">
-          <span id="age" class="text-white font-semibold"></span> ans. Diplômé en <strong class="text-white">maintenance informatique et réseaux</strong>. 
-          Spécialisé en <strong class="text-white">développement web</strong>, je construis des solutions digitales performantes et élégantes.
-        </p>
-        <p class="text-gray-500 leading-relaxed fade-in-up stagger-3">
-          Passionné de <strong class="text-gray-300">guitare</strong> et <strong class="text-gray-300">création musicale</strong>.
-        </p>
-        <div class="flex gap-4 justify-center md:justify-start fade-in-up stagger-4">
-          <a href="#projects" class="btn-primary px-8 py-3 rounded font-semibold">
-            Voir mes projets
-          </a>
-          <a href="#contact" class="btn-secondary px-8 py-3 rounded font-semibold">
-            Contact
-          </a>
+      <h1 class="text-5xl md:text-8xl font-extrabold mb-8 leading-[1.1] text-gradient">
+        Développeur Web & Technicien IT.
+      </h1>
+      <p class="text-gray-400 text-lg md:text-xl max-w-lg leading-relaxed mb-10">
+        Basé en Belgique, j'allie <span class="text-white">maintenance technique</span> et <span class="text-white">développement d'interfaces</span> pour créer des solutions digitales robustes. Diplômé et passionné.
+      </p>
+      <div class="flex flex-wrap gap-5">
+        <a href="#projects" class="bg-white text-black px-10 py-4 rounded-xl font-bold text-sm hover:scale-105 transition transform duration-300">Voir mon Portfolio</a>
+        <div class="flex items-center gap-4 px-6 text-gray-400 font-mono text-sm">
+           <span id="age" class="text-white font-bold"></span> ans / Belgique
         </div>
       </div>
+    </div>
+
+    <div class="relative reveal delay-300 flex justify-center">
+      <div class="absolute -inset-10 bg-white/5 blur-[100px] rounded-full"></div>
+      <img src="https://i.ibb.co/JWS9FLj2/Ryan.png" alt="Ryan Deschuyteneer" 
+           class="relative z-10 w-full max-w-md rounded-[2.5rem] grayscale hover:grayscale-0 transition duration-1000 shadow-2xl border border-white/10 profile-glow">
     </div>
   </div>
 </section>
 
-<!-- Skills Section -->
-<section id="skills" class="max-w-7xl mx-auto py-24 px-6">
-  <div class="mb-16">
-    <h2 class="section-title relative text-3xl md:text-4xl font-bold mb-2 inline-block">Stack Technique</h2>
-    <p class="text-gray-500 mt-6 max-w-2xl">
-      Technologies et outils pour créer des expériences web modernes
-    </p>
-  </div>
-  <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6">
-    <!-- HTML5 -->
-    <div class="skill-card card-dark rounded-lg p-6 text-center">
-      <div class="w-14 h-14 mx-auto mb-4 flex items-center justify-center">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/61/HTML5_logo_and_wordmark.svg/1024px-HTML5_logo_and_wordmark.svg.png" 
-             alt="HTML5" class="w-12 h-12 opacity-80">
-      </div>
-      <h3 class="font-semibold text-white text-sm">HTML5</h3>
+<section class="py-20 px-6 border-y border-white/5 bg-black/20">
+  <div class="max-w-7xl mx-auto flex flex-wrap justify-center md:justify-between gap-12">
+    <div class="text-center md:text-left">
+      <div class="text-3xl font-bold mb-1">Stack Moderne</div>
+      <div class="text-gray-500 text-xs uppercase tracking-widest font-bold">React, Tailwind, Node.js</div>
     </div>
-    
-    <!-- CSS3 -->
-    <div class="skill-card card-dark rounded-lg p-6 text-center">
-      <div class="w-14 h-14 mx-auto mb-4 flex items-center justify-center">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/d/d5/CSS3_logo_and_wordmark.svg" 
-             alt="CSS3" class="w-12 h-12 opacity-80">
-      </div>
-      <h3 class="font-semibold text-white text-sm">CSS3</h3>
+    <div class="text-center md:text-left">
+      <div class="text-3xl font-bold mb-1">Infrastructure</div>
+      <div class="text-gray-500 text-xs uppercase tracking-widest font-bold">Maintenance & Réseaux PC</div>
     </div>
-    
-    <!-- JavaScript -->
-    <div class="skill-card card-dark rounded-lg p-6 text-center">
-      <div class="w-14 h-14 mx-auto mb-4 flex items-center justify-center">
-        <img src="https://cdn4.iconfinder.com/data/icons/logos-and-brands/512/187_Js_logo_logos-512.png" 
-             alt="JavaScript" class="w-12 h-12 opacity-80">
-      </div>
-      <h3 class="font-semibold text-white text-sm">JavaScript</h3>
-    </div>
-    
-    <!-- Tailwind CSS -->
-    <div class="skill-card card-dark rounded-lg p-6 text-center">
-      <div class="w-14 h-14 mx-auto mb-4 flex items-center text-white justify-center">
-        <img src="https://cdn.iconscout.com/icon/free/png-256/free-tailwind-css-logo-icon-download-in-svg-png-gif-file-formats--social-media-pack-logos-icons-4406745.png" 
-             alt="Tailwind CSS" class="w-12 h-12 opacity-80" style="filter: invert(1);">
-      </div>
-      <h3 class="font-semibold text-white text-sm">Tailwind CSS</h3>
-    </div>
-    
-    <!-- React -->
-    <div class="skill-card card-dark rounded-lg p-6 text-center">
-      <div class="w-14 h-14 mx-auto mb-4 flex items-center justify-center">
-        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRQZT0HlYDSVGYkohDOMXuGurMj8wME1iFX_w&s" 
-             alt="React" class="w-12 h-12 opacity-80">
-      </div>
-      <h3 class="font-semibold text-white text-sm">React</h3>
-    </div>
-    
-    <!-- Node.js -->
-    <div class="skill-card card-dark rounded-lg p-6 text-center">
-      <div class="w-14 h-14 mx-auto mb-4 flex items-center justify-center">
-        <img src="https://img.icons8.com/?size=1200&id=54087&format=jpg" 
-             alt="Node.js" class="w-12 h-12 opacity-80">
-      </div>
-      <h3 class="font-semibold text-white text-sm">Node.js</h3>
-    </div>
-    
-    <!-- Maintenance PC -->
-    <div class="skill-card card-dark rounded-lg p-6 text-center">
-      <div class="w-14 h-14 mx-auto mb-4 flex items-center justify-center">
-        <img src="https://www.freeiconspng.com/thumbs/pc-icon/pc-icon-9.png" 
-             alt="Maintenance PC" class="w-12 h-12 opacity-80">
-      </div>
-      <h3 class="font-semibold text-white text-sm">Maintenance PC</h3>
-    </div>
-    
-    <!-- Réseaux -->
-    <div class="skill-card card-dark rounded-lg p-6 text-center">
-      <div class="w-14 h-14 mx-auto mb-4 flex items-center justify-center">
-        <img src="https://images.vexels.com/media/users/3/141424/isolated/preview/e0bb2e1b2183a2d1e675f215ce236e21-wifi-icon.png" 
-             alt="Réseaux" class="w-12 h-12 opacity-100" style="filter: invert(1);">
-      </div>
-      <h3 class="font-semibold text-white text-sm">Réseaux</h3>
+    <div class="text-center md:text-left">
+      <div class="text-3xl font-bold mb-1">Polyvalence</div>
+      <div class="text-gray-500 text-xs uppercase tracking-widest font-bold">Création & Support IT</div>
     </div>
   </div>
 </section>
 
-<!-- Projects Section -->
-<section id="projects" class="max-w-7xl mx-auto py-24 px-6">
-  <div class="mb-16">
-    <h2 class="section-title relative text-3xl md:text-4xl font-bold mb-2 inline-block">Projets</h2>
-    <p class="text-gray-500 mt-6 max-w-2xl">
-      Sélection de mes réalisations récentes
-    </p>
-  </div>
-  <div id="projects-container" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-    <!-- Projects will be loaded here -->
+<section id="projects" class="py-32 px-6">
+  <div class="max-w-7xl mx-auto">
+    <div class="mb-20">
+      <h2 class="text-4xl md:text-6xl font-bold mb-6">Réalisations</h2>
+      <div class="h-1 w-20 bg-white rounded-full"></div>
+    </div>
+    
+    <div id="projects-container" class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+      </div>
   </div>
 </section>
 
-<!-- Contact Section -->
-<section id="contact" class="max-w-7xl mx-auto py-24 px-6">
-  <div class="mb-16">
-    <h2 class="section-title relative text-3xl md:text-4xl font-bold mb-2 inline-block">Contact</h2>
-    <p class="text-gray-500 mt-6 max-w-2xl">
-      Un projet en tête ? Discutons-en.
-    </p>
-  </div>
-  
-  <div class="max-w-4xl mx-auto grid md:grid-cols-2 gap-12">
-    <!-- Contact Info -->
-    <div class="space-y-6">
-      <div class="card-dark rounded-lg p-6">
-        <div class="flex items-start gap-4 mb-6">
-          <div class="w-12 h-12 bg-white/5 rounded flex items-center justify-center flex-shrink-0">
-            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
-            </svg>
-          </div>
-          <div>
-            <p class="text-xs text-gray-500 font-medium uppercase tracking-wider mb-1">Email</p>
-            <a href="mailto:ryan.deschuyteneer@gmail.com" class="text-white hover:text-gray-300 transition">
-              ryan.deschuyteneer@gmail.com
-            </a>
-          </div>
-        </div>
-        
-        <div class="flex items-start gap-4 mb-6">
-          <div class="w-12 h-12 bg-white/5 rounded flex items-center justify-center flex-shrink-0">
-            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
-            </svg>
-          </div>
-          <div>
-            <p class="text-xs text-gray-500 font-medium uppercase tracking-wider mb-1">Téléphone</p>
-            <a href="tel:+32498196523" class="text-white hover:text-gray-300 transition">
-              +32 498 19 65 23
-            </a>
-          </div>
-        </div>
-        
-        <div class="flex items-start gap-4">
-          <div class="w-12 h-12 bg-white/5 rounded flex items-center justify-center flex-shrink-0">
-            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
-            </svg>
-          </div>
-          <div>
-            <p class="text-xs text-gray-500 font-medium uppercase tracking-wider mb-1">Localisation</p>
-            <p class="text-white">Belgique</p>
-          </div>
-        </div>
-      </div>
+<section id="contact" class="py-32 px-6 relative">
+  <div class="max-w-4xl mx-auto glass rounded-[3rem] p-12 md:p-20 relative overflow-hidden">
+    <div class="absolute top-0 right-0 p-10 opacity-10">
+      <svg width="200" height="200" fill="currentColor" viewBox="0 0 24 24"><path d="M21 8V7l-3 2-2-1-3 2-3-2-2 1-3-2v1l3 2 2-1 3 2 3-2 2 1 3-2z"/></svg>
+    </div>
+    
+    <div class="relative z-10">
+      <h2 class="text-4xl md:text-5xl font-bold mb-8 text-center">Un projet ? <br><span class="text-gray-500">Écrivez-moi.</span></h2>
       
-      <div class="card-dark rounded-lg p-6">
-        <p class="text-sm font-medium text-white mb-4">Réseaux sociaux</p>
-        <div class="flex gap-4">
-          <a href="https://github.com/ryansdee" target="_blank" rel="noopener noreferrer" 
-             class="social-icon w-12 h-12 bg-white/5 rounded flex items-center justify-center hover:bg-white/10">
-            <img src="https://cdn-icons-png.flaticon.com/128/733/733553.png" alt="GitHub" class="w-6 h-6 invert opacity-80" />
-          </a>
-          <a href="https://www.linkedin.com/in/ryan-deschuyteneer-2b1395201/" target="_blank" rel="noopener noreferrer" 
-             class="social-icon w-12 h-12 bg-white/5 rounded flex items-center justify-center hover:bg-white/10">
-            <img src="https://cdn-icons-png.flaticon.com/512/2504/2504923.png" alt="LinkedIn" class="w-6 h-6 invert opacity-80" />
-          </a>
-          <a href="https://www.twitch.tv/ryansdee" target="_blank" rel="noopener noreferrer" 
-             class="social-icon w-12 h-12 bg-white/5 rounded flex items-center justify-center hover:bg-white/10">
-            <img src="https://cdn-icons-png.flaticon.com/128/2504/2504946.png" alt="Twitch" class="w-6 h-6 invert opacity-80" />
-          </a>
+      <form id="contact-form" action="https://picklink.be/contact-porto.php" method="POST" class="space-y-6">
+        <div class="grid md:grid-cols-2 gap-6">
+          <input type="text" name="name" placeholder="Votre Nom" required class="w-full px-6 py-4 rounded-2xl text-white">
+          <input type="email" name="email" placeholder="Email Professionnel" required class="w-full px-6 py-4 rounded-2xl text-white">
         </div>
-      </div>
-    </div>
-    
-    <!-- Contact Form -->
-    <div class="card-dark rounded-lg p-8">
-      <form id="contact-form" action="https://picklink.be/contact-porto.php" method="POST" class="space-y-6" novalidate>
-        <div>
-          <label for="name" class="block text-sm font-medium text-gray-400 mb-2">Nom</label>
-          <input type="text" id="name" name="name" required
-                 class="w-full rounded px-4 py-3" 
-                 placeholder="Votre nom" />
-        </div>
+        <textarea name="message" rows="5" placeholder="Parlez-moi de votre besoin..." required class="w-full px-6 py-4 rounded-2xl text-white resize-none"></textarea>
         
-        <div>
-          <label for="email" class="block text-sm font-medium text-gray-400 mb-2">Email</label>
-          <input type="email" id="email" name="email" required
-                 class="w-full rounded px-4 py-3" 
-                 placeholder="votre@email.com" />
-        </div>
-        
-        <div>
-          <label for="message" class="block text-sm font-medium text-gray-400 mb-2">Message</label>
-          <textarea id="message" name="message" rows="5" required
-                    class="w-full rounded px-4 py-3 resize-none" 
-                    placeholder="Votre message..."></textarea>
-        </div>
-        
-        <button type="submit" class="w-full btn-primary px-6 py-4 rounded font-semibold">
-          Envoyer
+        <button type="submit" class="w-full bg-white text-black py-5 rounded-2xl font-extrabold text-sm uppercase tracking-widest hover:bg-gray-200 transition-all duration-300 transform hover:scale-[1.02]">
+          Envoyer le message
         </button>
       </form>
-      <div id="form-status" class="mt-4 text-center text-sm"></div>
+      <div id="form-status" class="mt-6 text-center text-sm font-medium tracking-wide"></div>
     </div>
   </div>
 </section>
 
-<!-- Footer -->
-<footer class="border-t border-white/10 py-12 mt-20">
-  <div class="max-w-7xl mx-auto px-6">
-    <div class="grid md:grid-cols-3 gap-8 mb-8">
-      <div>
-        <h3 class="text-lg font-bold text-white mb-3">Ryan Deschuyteneer</h3>
-        <p class="text-sm text-gray-500">
-          Développeur web et technicien IT basé en Belgique.
-        </p>
-      </div>
-      
-      <div>
-        <h4 class="font-semibold text-white mb-3 text-sm">Navigation</h4>
-        <div class="space-y-2 text-sm">
-          <a href="#about" class="block text-gray-500 hover:text-white transition">À propos</a>
-          <a href="#skills" class="block text-gray-500 hover:text-white transition">Compétences</a>
-          <a href="#projects" class="block text-gray-500 hover:text-white transition">Projets</a>
-          <a href="#contact" class="block text-gray-500 hover:text-white transition">Contact</a>
-        </div>
-      </div>
-      
-      <div>
-        <h4 class="font-semibold text-white mb-3 text-sm">Contact</h4>
-        <div class="space-y-2 text-sm text-gray-500">
-          <p>ryan.deschuyteneer@gmail.com</p>
-          <p>+32 498 19 65 23</p>
-        </div>
-      </div>
-    </div>
-    
-    <div class="pt-8 border-t border-white/10 text-center text-sm text-gray-600">
-      <p>&copy; 2025 Ryan Deschuyteneer</p>
+<footer class="py-12 border-t border-white/5 text-center text-gray-500 text-xs uppercase tracking-[0.3em]">
+  <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-6">
+    <p>&copy; 2022 - <span id="year"></span> Ryan Deschuyteneer</p>
+    <div class="flex gap-8 font-bold text-white">
+      <a href="https://github.com/ryansdee" target="_blank" class="hover:text-gray-400 transition">GitHub</a>
+      <a href="https://www.linkedin.com/in/ryan-deschuyteneer-2b1395201/" target="_blank" class="hover:text-gray-400 transition">LinkedIn</a>
     </div>
   </div>
 </footer>
 
 <script>
-// Age calculation
+// Calcul de l'âge automatique
 function calculateAge() {
   const birthDate = new Date('2004-08-02');
   const today = new Date();
   let age = today.getFullYear() - birthDate.getFullYear();
-  const monthDiff = today.getMonth() - birthDate.getMonth();
-  if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthDate.getDate())) {
-    age--;
-  }
+  if (today.getMonth() < birthDate.getMonth() || (today.getMonth() === birthDate.getMonth() && today.getDate() < birthDate.getDate())) age--;
   document.getElementById('age').textContent = age;
 }
 calculateAge();
 
-// Mobile menu toggle
-const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-const mobileMenu = document.getElementById('mobile-menu');
+// Année actuelle dans le footer
+document.getElementById('year').textContent = new Date().getFullYear();
 
-mobileMenuBtn?.addEventListener('click', () => {
-  mobileMenu.classList.toggle('hidden');
-});
-
-// Close mobile menu when clicking on a link
-document.querySelectorAll('#mobile-menu a').forEach(link => {
-  link.addEventListener('click', () => {
-    mobileMenu.classList.add('hidden');
-  });
-});
-
-// Load and render projects
-async function loadProjects() {
-  const projectsContainer = document.getElementById('projects-container');
-  
-  try {
-    const response = await fetch('./projects.json');
-    const projects = await response.json();
-    renderProjects(projects);
-  } catch (error) {
-    console.error('Erreur lors du chargement des projets:', error);
-    
-    const projects = [
-      {
-        title: "Portfolio Personnel",
-        description: "Un site portfolio responsive fait avec HTML, Tailwind CSS et JavaScript.",
-        image: "./img/ryansdee.png",
-        link: "https://ryansdee.netlify.app/"
-      },
-      {
-        title: "Clubtwee",
-        description: "Un site pour m'exercer sur un café d'un ami.",
-        image: "./img/clubtwee.png",
-        link: "https://clubtwee.netlify.app/"
-      },
-      {
-        title: "Vits Architecture",
-        description: "Un landing page pour l'entreprise Vits Architecture.",
-        image: "./img/vits.png",
-        link: "https://vits-architecture.netlify.app/"
-      },
-      {
-        title: "Garage Laurent",
-        description: "Un site pour un garage automobile.",
-        image: "./img/garage.png",
-        link: "https://garagelaurent.be/"
-      },
-      {
-        title: "SubTrack",
-        description: "Une application web pour suivre vos abonnements et de les comparer.",
-        image: "./img/subtrack.png",
-        link: "https://tracksub.netlify.app/"
-      },
-      {
-        title: "Fruity Bean",
-        description: "Un site pour un café fruité.",
-        image: "./img/fruitybean.png",
-        link: "https://fruitybean.netlify.app/"
-      },
-      {
-        title: "Vadim Thevelin Portfolio",
-        description: "Un site portfolio pour Vadim Thevelin, un photographe.",
-        image: "./img/vadim.png",
-        link: "https://vath-portofolio.netlify.app/"
-      }
-    ];
-    
-    renderProjects(projects);
+// Animation Navbar au Scroll
+window.addEventListener('scroll', () => {
+  const nav = document.getElementById('navbar');
+  if (window.scrollY > 50) {
+    nav.classList.add('glass', 'py-4');
+    nav.classList.remove('py-6');
+  } else {
+    nav.classList.remove('glass', 'py-4');
+    nav.classList.add('py-6');
   }
-}
+});
 
-function renderProjects(projects) {
-  const projectsContainer = document.getElementById('projects-container');
-  projectsContainer.innerHTML = '';
+// Rendu des Projets (Utilise tes données réelles)
+async function loadProjects() {
+  const container = document.getElementById('projects-container');
   
-  projects.forEach((project, index) => {
-    const projectCard = document.createElement('div');
-    projectCard.className = 'project-card card-dark rounded-lg overflow-hidden fade-in-up';
-    projectCard.style.animationDelay = `${index * 0.1}s`;
-    
-    projectCard.innerHTML = `
-      <div class="h-48 overflow-hidden bg-black/50">
-        <img src="${project.image}" 
-             alt="${project.title}" 
-             class="w-full h-full object-cover opacity-80 hover:opacity-100 transition-opacity"
-             onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\\'w-full h-full flex items-center justify-center text-gray-600\\'>📁</div>';" />
+  // Ta liste de projets avec les chemins d'images corrects
+  const projects = [
+    { title: "Garage Laurent", desc: "Expertise SEO et interface vitrine pour un garage automobile.", img: "./img/garage.png", link: "https://garagelaurent.be/", tag: "Commercial" },
+    { title: "SubTrack", desc: "SaaS de gestion d'abonnements : monitoring et optimisation des coûts.", img: "./img/subtrack.png", link: "https://tracksub.netlify.app/", tag: "Web App" },
+    { title: "Woppy", desc: "Plateforme de mise en relation entre étudiants et recruteurs pour jobs flexibles.", img: "./img/woppy.png", link: "https://woppy.netlify.app/", tag: "Platform" },
+    { title: "Vits Architecture", desc: "Landing page haute performance pour un cabinet d'architecture.", img: "./img/vits.png", link: "https://vits-architecture.netlify.app/", tag: "Design" },
+    { title: "Vadim Thevelin", desc: "Portfolio immersif pour photographe professionnel.", img: "./img/vadim.png", link: "https://vath-portofolio.netlify.app/", tag: "Portfolio Art" },
+    { title: "LiquidFlow", desc: "E-commerce spécialisé dans le hardware et les PC Gaming haute performance.", img: "./img/liquidflow.png", link: "https://liquidflow.netlify.app/", tag: "E-Commerce" },
+    { title: "Ryan Market", desc: "Interface de vente optimisée pour composants informatiques.", img: "./img/ryanmarket.png", link: "https://ryanmarket.netlify.app/", tag: "Marketplace" },
+    { title: "Ryansdee Workflow", desc: "Guide méthodologique de développement et relation client.", img: "./img/workflow.png", link: "https://ryansdee-workflow.netlify.app/", tag: "Expertise" },
+    { title: "Fruity Bean", desc: "Expérience digitale moderne pour un concept de café fruité.", img: "./img/fruitybean.png", link: "https://fruitybean.netlify.app/", tag: "Horeca" },
+    { title: "Books & Bites", desc: "Plateforme collaborative de critiques littéraires et culinaires.", img: "./img/booksandbites.png", link: "https://books-and-bites.netlify.app/", tag: "Blog" },
+    { title: "Clubtwee", desc: "Identité numérique et site vitrine pour un établissement local.", img: "./img/clubtwee.png", link: "https://clubtwee.netlify.app/", tag: "Concept" }
+  ];
+
+  container.innerHTML = projects.map((p, i) => `
+    <div class="reveal group glass rounded-[2.5rem] overflow-hidden p-4 glass-hover transition-all duration-500">
+      <div class="h-56 rounded-[1.8rem] bg-zinc-900 mb-6 relative overflow-hidden shadow-inner">
+        <img src="${p.img}" alt="${p.title}" 
+             class="w-full h-full object-cover opacity-60 group-hover:opacity-100 group-hover:scale-105 transition duration-700 grayscale group-hover:grayscale-0"
+             onerror="this.parentElement.innerHTML='<div class=\'flex items-center justify-center h-full text-zinc-700\'>📁 Image non trouvée</div>'">
       </div>
-      <div class="p-6">
-        <h3 class="text-lg font-bold text-white mb-2">${project.title}</h3>
-        <p class="text-gray-500 text-sm mb-4">${project.description}</p>
-        <a href="${project.link}" 
-           target="_blank"
-           rel="noopener noreferrer"
-           class="inline-flex items-center text-white font-semibold text-sm hover:text-gray-300 transition group">
-          Voir le projet
-          <svg class="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
-          </svg>
+      <div class="px-4 pb-4">
+        <div class="flex justify-between items-center mb-3">
+          <span class="text-[10px] font-bold uppercase tracking-widest text-gray-500">${p.tag}</span>
+        </div>
+        <h3 class="text-xl font-bold mb-3 text-white">${p.title}</h3>
+        <p class="text-gray-400 text-sm leading-relaxed mb-6 h-12 overflow-hidden">${p.desc}</p>
+        <a href="${p.link}" target="_blank" class="inline-flex items-center text-xs font-bold uppercase tracking-widest text-white hover:gap-3 transition-all duration-300">
+          Voir le projet <span class="ml-2 text-lg">→</span>
         </a>
       </div>
-    `;
-    projectsContainer.appendChild(projectCard);
-  });
+    </div>
+  `).join('');
+
+  setTimeout(initReveal, 100);
+}
+
+// Observer pour les animations au scroll
+function initReveal() {
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('active');
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 }
 
 loadProjects();
 
-// Contact form handling
-document.getElementById('contact-form').addEventListener('submit', async function(event) {
-  event.preventDefault();
-  
-  const form = event.target;
-  const formData = new FormData(form);
-  const statusDiv = document.getElementById('form-status');
-  
-  statusDiv.innerHTML = '<p class="text-gray-400">Envoi en cours...</p>';
+// Gestion Formulaire Contact
+document.getElementById('contact-form').addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const status = document.getElementById('form-status');
+  status.innerHTML = "<span class='text-gray-400'>Transmission en cours...</span>";
   
   try {
-    const response = await fetch(form.action, {
+    const response = await fetch(e.target.action, {
       method: 'POST',
-      body: formData,
-      headers: {
-        'Accept': 'application/json'
-      }
+      body: new FormData(e.target)
     });
-    
-    if (!response.ok) {
-      window.location.href = 'https://ryansdee.netlify.app/error.html';
-      return;
-    }
-    
-    const result = await response.json();
-    
-    if (result.status === 'success') {
-      window.location.href = 'https://ryansdee.netlify.app/success.html';
-    } else {
-      window.location.href = 'https://ryansdee.netlify.app/error.html';
-    }
-  } catch (error) {
-    console.error('Erreur:', error);
-    window.location.href = 'https://ryansdee.netlify.app/error.html';
+    if(response.ok) {
+      status.innerHTML = "<span class='text-green-400 font-bold uppercase text-[10px] tracking-widest'>Message transmis avec succès.</span>";
+      e.target.reset();
+    } else { throw new Error(); }
+  } catch {
+    status.innerHTML = "<span class='text-red-400 font-bold uppercase text-[10px] tracking-widest'>Erreur lors de l'envoi.</span>";
   }
-});
-
-// Smooth scroll
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-  anchor.addEventListener('click', function (e) {
-    e.preventDefault();
-    const target = document.querySelector(this.getAttribute('href'));
-    if (target) {
-      target.scrollIntoView({
-        behavior: 'smooth',
-        block: 'start'
-      });
-    }
-  });
-});
-
-// Intersection Observer for animations
-const observerOptions = {
-  threshold: 0.1,
-  rootMargin: '0px 0px -100px 0px'
-};
-
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.style.opacity = '1';
-      entry.target.style.transform = 'translateY(0)';
-    }
-  });
-}, observerOptions);
-
-document.querySelectorAll('.fade-in-up').forEach(el => {
-  observer.observe(el);
 });
 </script>
 
