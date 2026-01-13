@@ -148,44 +148,38 @@ window.addEventListener('scroll', () => {
 // Rendu des Projets (Utilise tes données réelles)
 async function loadProjects() {
   const container = document.getElementById('projects-container');
-  
-  // Ta liste de projets avec les chemins d'images corrects
-  const projects = [
-    { title: "Garage Laurent", desc: "Expertise SEO et interface vitrine pour un garage automobile.", img: "./img/garage.png", link: "https://garagelaurent.be/", tag: "Commercial" },
-    { title: "SubTrack", desc: "SaaS de gestion d'abonnements : monitoring et optimisation des coûts.", img: "./img/subtrack.png", link: "https://tracksub.netlify.app/", tag: "Web App" },
-    { title: "Woppy", desc: "Plateforme de mise en relation entre étudiants et recruteurs pour jobs flexibles.", img: "./img/woppy.png", link: "https://woppy.netlify.app/", tag: "Platform" },
-    { title: "Vits Architecture", desc: "Landing page haute performance pour un cabinet d'architecture.", img: "./img/vits.png", link: "https://vits-architecture.netlify.app/", tag: "Design" },
-    { title: "Vadim Thevelin", desc: "Portfolio immersif pour photographe professionnel.", img: "./img/vadim.png", link: "https://vath-portofolio.netlify.app/", tag: "Portfolio Art" },
-    { title: "LiquidFlow", desc: "E-commerce spécialisé dans le hardware et les PC Gaming haute performance.", img: "./img/liquidflow.png", link: "https://liquidflow.netlify.app/", tag: "E-Commerce" },
-    { title: "Ryan Market", desc: "Interface de vente optimisée pour composants informatiques.", img: "./img/ryanmarket.png", link: "https://ryanmarket.netlify.app/", tag: "Marketplace" },
-    { title: "Ryansdee Workflow", desc: "Guide méthodologique de développement et relation client.", img: "./img/workflow.png", link: "https://ryansdee-workflow.netlify.app/", tag: "Expertise" },
-    { title: "Fruity Bean", desc: "Expérience digitale moderne pour un concept de café fruité.", img: "./img/fruitybean.png", link: "https://fruitybean.netlify.app/", tag: "Horeca" },
-    { title: "Books & Bites", desc: "Plateforme collaborative de critiques littéraires et culinaires.", img: "./img/booksandbites.png", link: "https://books-and-bites.netlify.app/", tag: "Blog" },
-    { title: "Clubtwee", desc: "Identité numérique et site vitrine pour un établissement local.", img: "./img/clubtwee.png", link: "https://clubtwee.netlify.app/", tag: "Concept" }
-  ];
 
-  container.innerHTML = projects.map((p, i) => `
-    <div class="reveal group glass rounded-[2.5rem] overflow-hidden p-4 glass-hover transition-all duration-500">
-      <div class="h-56 rounded-[1.8rem] bg-zinc-900 mb-6 relative overflow-hidden shadow-inner">
-        <img src="${p.img}" alt="${p.title}" 
-             class="w-full h-full object-cover opacity-60 group-hover:opacity-100 group-hover:scale-105 transition duration-700 grayscale group-hover:grayscale-0"
-             onerror="this.parentElement.innerHTML='<div class=\'flex items-center justify-center h-full text-zinc-700\'>📁 Image non trouvée</div>'">
-      </div>
-      <div class="px-4 pb-4">
-        <div class="flex justify-between items-center mb-3">
-          <span class="text-[10px] font-bold uppercase tracking-widest text-gray-500">${p.tag}</span>
+  try {
+    const response = await fetch('./projects.json');
+    if (!response.ok) throw new Error('Impossible de charger projects.json');
+
+    const projects = await response.json();
+
+    container.innerHTML = projects.map((p) => `
+      <div class="reveal group glass rounded-[2.5rem] overflow-hidden p-4 glass-hover transition-all duration-500">
+        <div class="h-56 rounded-[1.8rem] bg-zinc-900 mb-6 relative overflow-hidden shadow-inner">
+          <img src="${p.image}" alt="${p.title}" 
+               class="w-full h-full object-cover opacity-60 group-hover:opacity-100 group-hover:scale-105 transition duration-700 grayscale group-hover:grayscale-0"
+               onerror="this.parentElement.innerHTML='<div class=\\'flex items-center justify-center h-full text-zinc-700\\'>📁 Image non trouvée</div>'">
         </div>
-        <h3 class="text-xl font-bold mb-3 text-white">${p.title}</h3>
-        <p class="text-gray-400 text-sm leading-relaxed mb-6 h-12 overflow-hidden">${p.desc}</p>
-        <a href="${p.link}" target="_blank" class="inline-flex items-center text-xs font-bold uppercase tracking-widest text-white hover:gap-3 transition-all duration-300">
-          Voir le projet <span class="ml-2 text-lg">→</span>
-        </a>
+        <div class="px-4 pb-4">
+          <h3 class="text-xl font-bold mb-3 text-white">${p.title}</h3>
+          <p class="text-gray-400 text-sm leading-relaxed mb-6 h-12 overflow-hidden">${p.description}</p>
+          <a href="${p.link}" target="_blank" class="inline-flex items-center text-xs font-bold uppercase tracking-widest text-white hover:gap-3 transition-all duration-300">
+            Voir le projet <span class="ml-2 text-lg">→</span>
+          </a>
+        </div>
       </div>
-    </div>
-  `).join('');
+    `).join('');
 
-  setTimeout(initReveal, 100);
+    setTimeout(initReveal, 100);
+
+  } catch (err) {
+    console.error(err);
+    container.innerHTML = "<p class='text-red-400'>Erreur lors du chargement des projets.</p>";
+  }
 }
+
 
 // Observer pour les animations au scroll
 function initReveal() {

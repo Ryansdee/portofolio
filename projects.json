@@ -1,74 +1,56 @@
 [
   {
     "title": "Portfolio Personnel",
-    "description": "Un site portfolio responsive fait avec HTML, Tailwind CSS et JavaScript.",
+    "description": "Portfolio personnel responsive présentant mes projets, réalisé avec HTML, Tailwind CSS et JavaScript.",
     "image": "./img/ryansdee.png",
     "link": "https://ryansdee.netlify.app/"
   },
   {
-    "title": "Clubtwee (test)",
-    "description": "Un site pour m'exercer sur un café d'un ami.",
+    "title": "Clubtwee",
+    "description": "Site vitrine réalisé dans le cadre d’un projet d’entraînement pour un café local.",
     "image": "./img/clubtwee.png",
     "link": "https://clubtwee.netlify.app/"
   },
   {
     "title": "Vits Architecture",
-    "description": "Un landing page pour le'entreprise Vits Architecture.",
+    "description": "Landing page moderne et performante conçue pour le cabinet Vits Architecture.",
     "image": "./img/vits.png",
     "link": "https://vits-architecture.netlify.app/"
   },
   {
     "title": "Garage Laurent",
-    "description": "Un site pour un garage automobile.",
+    "description": "Site vitrine optimisé pour la visibilité en ligne d’un garage automobile.",
     "image": "./img/garage.png",
     "link": "https://garagelaurent.be/"
   },
   {
     "title": "SubTrack",
-    "description": "Une application web pour suvre vos abonnements et de les comparer.",
+    "description": "Application web permettant de suivre, comparer et optimiser ses abonnements en ligne.",
     "image": "./img/subtrack.png",
     "link": "https://tracksub.netlify.app/"
   },
   {
-    "title": "Fruity Bean",
-    "description": "Un site pour un café fruité.",
-    "image": "./img/fruitybean.png",
-    "link": "https://fruitybean.netlify.app/"
-  },
-  {
     "title": "Books & Bites",
-    "description": "Un site pour les reviews de 3 amies",
+    "description": "Plateforme collaborative de critiques littéraires et culinaires créée pour un groupe d’amies.",
     "image": "./img/booksandbites.png",
     "link": "https://books-and-bites.netlify.app/"
   },
   {
-    "title": "Vadim Thevelin portfolio",
-    "description": "Un site portfolio pour Vadim Thevelin, un photographe.",
+    "title": "Vadim Thevelin Portfolio",
+    "description": "Portfolio immersif mettant en valeur le travail photographique de Vadim Thevelin.",
     "image": "./img/vadim.png",
     "link": "https://vath-portofolio.netlify.app/"
   },
   {
-    "title": "LiquidFlow",
-    "description": "Un site pour une boutique de vente de pc gamers.",
-    "image": "./img/liquidflow.png",
-    "link": "https://liquidflow.netlify.app/"
-  },
-  {
-    "title" : "Ryan Market",
-    "description": "Un site vitrine de mes pc mise en vente sur facebook marketplace.",
-    "image": "./img/ryanmarket.png",
-    "link": "https://ryanmarket.netlify.app/"
-  },
-  {
-    "title": "Ryansdee Workflow",
-    "description": "Un site pour présenter mon workflow de développement avec mes clients.",
-    "image": "./img/workflow.png",
-    "link": "https://ryansdee-workflow.netlify.app/"
-  },
-  {
     "title": "Woppy",
-    "description": "Connectez-vous avec des étudiants talentueux disponibles pour des emplois flexibles dans votre région.",
+    "description": "Plateforme de mise en relation entre étudiants et recruteurs pour des emplois flexibles et locaux.",
     "image": "./img/woppy.png",
     "link": "https://woppy.netlify.app/"
+  },
+  {
+    "title": "Le Brouillon",
+    "description": "Plateforme dédiée à une écrivaine pour publier des œuvres et partager des conseils d’écriture.",
+    "image": "./img/lebrouillon.png",
+    "link": "https://le-brouillon.netlify.app/"
   }
 ]
