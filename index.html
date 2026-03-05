@@ -3,219 +3,608 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Ryan Deschuyteneer | Développeur Web & Expert IT</title>
+  <title>Ryan Deschuyteneer — Développeur Web & IT</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="stylesheet" href="style.css">
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-</head>
-<body class="grid-bg">
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,200;0,9..144,300;1,9..144,200;1,9..144,300&family=Geist+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg:     #080808;
+      --bg2:    #0f0f0f;
+      --border: rgba(255,255,255,0.06);
+      --text:   #e8e4dc;
+      --muted:  rgba(232,228,220,0.38);
+      --accent: #e8e4dc;
+    }
 
-<nav class="fixed w-full z-50 transition-all duration-300 py-6" id="navbar">
-  <div class="max-w-7xl mx-auto px-6 flex justify-between items-center">
-    <div class="text-xl font-extrabold tracking-tighter">RYAN<span class="text-gray-500">.</span>D</div>
-    
-    <div class="hidden md:flex space-x-8 text-[13px] font-medium uppercase tracking-widest">
-      <a href="#about" class="text-gray-400 hover:text-white transition">Expertise</a>
-      <a href="#projects" class="text-gray-400 hover:text-white transition">Projets</a>
-      <a href="#contact" class="text-gray-400 hover:text-white transition">Contact</a>
+    *, *::before, *::after { box-sizing: border-box; }
+    html { background: var(--bg); }
+
+    body {
+      font-family: 'Geist Mono', monospace;
+      background: var(--bg);
+      color: var(--text);
+      overflow-x: hidden;
+      cursor: none;
+    }
+
+    /* ── Custom cursor ── */
+    #cursor {
+      position: fixed; top: 0; left: 0; z-index: 9999; pointer-events: none;
+      mix-blend-mode: difference;
+    }
+    #cursor .dot {
+      width: 8px; height: 8px; background: white; border-radius: 50%;
+      transform: translate(-50%, -50%);
+      transition: width .25s ease, height .25s ease;
+    }
+    #cursor .ring {
+      position: absolute; top: 50%; left: 50%;
+      width: 36px; height: 36px;
+      border: 1px solid rgba(255,255,255,0.35);
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+      transition: width .4s cubic-bezier(0.16,1,0.3,1),
+                  height .4s cubic-bezier(0.16,1,0.3,1),
+                  opacity .3s ease;
+    }
+    body:has(a:hover) #cursor .ring,
+    body:has(button:hover) #cursor .ring {
+      width: 56px; height: 56px;
+    }
+
+    /* ── Fraunces display ── */
+    .f-display { font-family: 'Fraunces', serif; }
+    .f-mono    { font-family: 'Geist Mono', monospace; }
+
+    /* ── Noise grain ── */
+    body::before {
+      content: '';
+      position: fixed; inset: 0; z-index: 9998; pointer-events: none;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+      opacity: 0.35;
+    }
+
+    /* ── Reveal animation ── */
+    .reveal {
+      opacity: 0; transform: translateY(28px);
+      transition: opacity 0.9s cubic-bezier(0.16,1,0.3,1),
+                  transform 0.9s cubic-bezier(0.16,1,0.3,1);
+    }
+    .reveal.active { opacity: 1; transform: translateY(0); }
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.22s; }
+    .reveal-delay-3 { transition-delay: 0.36s; }
+
+    /* ── Navbar ── */
+    #navbar {
+      transition: background 0.4s ease, border-color 0.4s ease, padding 0.3s ease;
+    }
+    #navbar.scrolled {
+      background: rgba(8,8,8,0.9);
+      border-bottom: 1px solid var(--border);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
+
+    /* ── Nav link hover ── */
+    .nav-link {
+      position: relative; text-decoration: none;
+      font-size: 9px; letter-spacing: 0.3em; text-transform: uppercase;
+      color: var(--muted); transition: color .25s ease;
+    }
+    .nav-link::after {
+      content: ''; position: absolute; bottom: -3px; left: 0;
+      width: 100%; height: 1px; background: var(--accent);
+      transform: scaleX(0); transform-origin: right;
+      transition: transform .3s cubic-bezier(0.76,0,0.24,1);
+    }
+    .nav-link:hover { color: var(--accent); }
+    .nav-link:hover::after { transform: scaleX(1); transform-origin: left; }
+
+    /* ── Hero ── */
+    #hero-title {
+      font-family: 'Fraunces', serif;
+      font-weight: 200;
+      line-height: 0.88;
+      letter-spacing: -0.02em;
+      font-size: clamp(4rem, 11vw, 10rem);
+    }
+
+    /* ── Status badge ── */
+    .status-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 6px 14px; border: 1px solid var(--border);
+      background: rgba(255,255,255,0.03);
+      font-size: 8px; letter-spacing: 0.32em; text-transform: uppercase;
+      color: var(--muted); border-radius: 2px;
+    }
+    .status-dot {
+      width: 5px; height: 5px; border-radius: 50%; background: #4ade80;
+      animation: pulse-dot 2s ease infinite;
+    }
+    @keyframes pulse-dot {
+      0%, 100% { opacity: 1; } 50% { opacity: 0.4; }
+    }
+
+    /* ── Stat items ── */
+    .stat-row {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 18px 0; border-bottom: 1px solid var(--border);
+    }
+    .stat-row:first-child { border-top: 1px solid var(--border); }
+
+    /* ── Skills tags ── */
+    .tag {
+      display: inline-block; padding: 5px 12px; margin: 3px;
+      border: 1px solid var(--border); border-radius: 2px;
+      font-size: 9px; letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--muted); transition: border-color .25s ease, color .25s ease;
+    }
+    .tag:hover { border-color: rgba(255,255,255,0.3); color: var(--accent); }
+
+    /* ── Project card ── */
+    .project-card {
+      background: var(--bg2); border: 1px solid var(--border);
+      border-radius: 4px; overflow: hidden;
+      transition: border-color .3s ease, transform .4s cubic-bezier(0.16,1,0.3,1);
+    }
+    .project-card:hover {
+      border-color: rgba(255,255,255,0.18);
+      transform: translateY(-3px);
+    }
+    .project-card .thumb {
+      height: 200px; overflow: hidden; position: relative;
+      background: #111;
+    }
+    .project-card .thumb img {
+      width: 100%; height: 100%; object-fit: cover;
+      opacity: 0.5; filter: grayscale(100%);
+      transition: opacity .6s ease, filter .6s ease, transform .7s cubic-bezier(0.16,1,0.3,1);
+    }
+    .project-card:hover .thumb img {
+      opacity: 0.85; filter: grayscale(0%); transform: scale(1.04);
+    }
+    .project-card .num {
+      font-family: 'Fraunces', serif; font-weight: 200; font-style: italic;
+      font-size: 52px; line-height: 1;
+      color: rgba(255,255,255,0.06);
+      position: absolute; bottom: 8px; right: 14px;
+      pointer-events: none;
+    }
+
+    /* ── Form inputs ── */
+    .form-input {
+      width: 100%; background: transparent;
+      border: none; border-bottom: 1px solid var(--border);
+      padding: 14px 0; font-family: 'Geist Mono', monospace;
+      font-size: 13px; color: var(--text); outline: none;
+      transition: border-color .25s ease;
+    }
+    .form-input::placeholder { color: rgba(232,228,220,0.2); }
+    .form-input:focus { border-bottom-color: rgba(232,228,220,0.5); }
+
+    /* ── Marquee ── */
+    .mq-inner {
+      display: flex; width: max-content;
+      animation: mq 22s linear infinite;
+    }
+    @keyframes mq {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
+
+    /* ── Horizontal divider line ── */
+    .section-label {
+      font-size: 8px; letter-spacing: 0.42em; text-transform: uppercase;
+      color: rgba(232,228,220,0.25);
+    }
+
+    /* ── CTA button ── */
+    .btn-outline {
+      display: inline-flex; align-items: center; gap: 12px;
+      border: 1px solid rgba(232,228,220,0.18);
+      padding: 13px 28px; font-size: 9px; letter-spacing: 0.28em;
+      text-transform: uppercase; color: var(--text);
+      transition: border-color .25s ease, background .25s ease, color .25s ease;
+      cursor: none; text-decoration: none;
+    }
+    .btn-outline:hover {
+      border-color: var(--accent); background: var(--accent); color: #080808;
+    }
+    .btn-solid {
+      display: inline-flex; align-items: center; gap: 12px;
+      background: var(--accent); color: #080808;
+      padding: 13px 28px; font-size: 9px; letter-spacing: 0.28em;
+      text-transform: uppercase; font-weight: 500;
+      transition: background .25s ease, color .25s ease;
+      cursor: none; text-decoration: none; border: 1px solid var(--accent);
+    }
+    .btn-solid:hover { background: transparent; color: var(--accent); }
+
+    /* ── Profile image ── */
+    .profile-img {
+      filter: grayscale(100%);
+      transition: filter 1s ease;
+    }
+    .profile-img:hover { filter: grayscale(0%); }
+
+    /* ── Line expand anim ── */
+    @keyframes lineExpand {
+      from { transform: scaleX(0); }
+      to   { transform: scaleX(1); }
+    }
+    .line-expand {
+      animation: lineExpand 1.2s cubic-bezier(0.16,1,0.3,1) 0.6s both;
+      transform-origin: left;
+    }
+  </style>
+</head>
+<body>
+
+<!-- Custom cursor -->
+<div id="cursor">
+  <div class="dot"></div>
+  <div class="ring"></div>
+</div>
+
+<!-- ═══════════════════════
+     NAV
+═══════════════════════ -->
+<nav id="navbar" class="fixed w-full z-50 px-8 md:px-12 py-7">
+  <div class="max-w-[1300px] mx-auto flex justify-between items-center">
+    <a href="#" class="f-display font-light text-[20px] tracking-tight text-white" style="font-style:italic">RD.</a>
+
+    <div class="hidden md:flex items-center gap-10">
+      <a href="#about"    class="nav-link">Expertise</a>
+      <a href="#projects" class="nav-link">Projets</a>
+      <a href="#contact"  class="nav-link">Contact</a>
     </div>
 
-    <a href="#contact" class="glass px-6 py-2.5 rounded-full text-xs font-bold uppercase tracking-widest hover:bg-white hover:text-black transition duration-500">
-      Discutons d'un projet
+    <a href="#contact" class="btn-outline text-[8px]">
+      Discutons
+      <svg width="10" height="10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M5 12h14M12 5l7 7-7 7"/>
+      </svg>
     </a>
   </div>
 </nav>
 
-<section id="about" class="min-h-screen flex items-center pt-20 px-6">
-  <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-16 items-center">
+<!-- ═══════════════════════
+     HERO
+═══════════════════════ -->
+<section id="about" class="min-h-screen flex flex-col justify-end px-8 md:px-12 pb-16 pt-40 relative">
+
+  <!-- Decorative large letter -->
+  <span class="f-display absolute right-4 top-[12vh] text-[30vw] font-light text-white pointer-events-none select-none leading-none"
+    style="color:rgba(255,255,255,0.025); font-style:italic; z-index:0">R</span>
+
+  <div class="max-w-[1300px] mx-auto w-full relative z-10">
+
+    <!-- Top row -->
+    <div class="flex items-center justify-between mb-12 reveal">
+      <div class="status-badge">
+        <span class="status-dot"></span>
+        Disponible immédiatement
+      </div>
+      <span class="section-label hidden md:block">Belgique — 2004</span>
+    </div>
+
+    <!-- Main grid -->
+    <div class="grid grid-cols-1 md:grid-cols-[1fr_auto] gap-12 md:gap-20 items-end">
+
+      <!-- Title block -->
+      <div>
+        <p class="section-label mb-6 reveal">Développeur Web & Technicien IT</p>
+        <h1 id="hero-title" class="reveal reveal-delay-1 text-white">
+          Ryan<br>
+          <span style="font-style:italic">Deschu&shy;yteneer</span>
+        </h1>
+        <div class="line-expand h-px bg-white/10 mt-8 mb-8 reveal reveal-delay-2"></div>
+        <p class="f-mono text-[12.5px] leading-[1.9] max-w-xl reveal reveal-delay-2" style="color:var(--muted)">
+          Basé en Belgique — j'allie <span style="color:var(--text)">maintenance technique</span> et
+          <span style="color:var(--text)">développement d'interfaces</span> pour créer des solutions digitales robustes. Diplômé et passionné.
+        </p>
+
+        <div class="flex flex-wrap gap-4 mt-10 reveal reveal-delay-3">
+          <a href="#projects" class="btn-solid">Voir le portfolio</a>
+          <a href="#contact"  class="btn-outline">Me contacter</a>
+        </div>
+      </div>
+
+      <!-- Profile image -->
+      <div class="reveal reveal-delay-2 hidden md:block">
+        <div style="width:260px; aspect-ratio:3/4; overflow:hidden; border:1px solid var(--border); position:relative;">
+          <img src="https://i.ibb.co/JWS9FLj2/Ryan.png" alt="Ryan Deschuyteneer"
+               class="profile-img w-full h-full object-cover">
+          <!-- Age badge -->
+          <div style="position:absolute;bottom:14px;left:14px;background:rgba(8,8,8,0.75);border:1px solid var(--border);padding:6px 12px;">
+            <span id="age-badge" class="f-mono text-[9px] tracking-widest" style="color:var(--muted)">— ans</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════
+     MARQUEE
+═══════════════════════ -->
+<div style="border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:13px 0;overflow:hidden;background:var(--bg);">
+  <div class="mq-inner">
+    <div style="display:flex;align-items:center;">
+      <template id="mq-tpl">
+        <span style="font-size:8px;letter-spacing:0.38em;text-transform:uppercase;color:rgba(232,228,220,0.25);padding:0 32px;">Stack Moderne</span>
+        <span style="color:rgba(255,255,255,0.1)">·</span>
+        <span style="font-size:8px;letter-spacing:0.38em;text-transform:uppercase;color:rgba(232,228,220,0.25);padding:0 32px;">React · Next.js</span>
+        <span style="color:rgba(255,255,255,0.1)">·</span>
+        <span style="font-size:8px;letter-spacing:0.38em;text-transform:uppercase;color:rgba(232,228,220,0.25);padding:0 32px;">Infrastructure IT</span>
+        <span style="color:rgba(255,255,255,0.1)">·</span>
+        <span style="font-size:8px;letter-spacing:0.38em;text-transform:uppercase;color:rgba(232,228,220,0.25);padding:0 32px;">Firebase · Tailwind</span>
+        <span style="color:rgba(255,255,255,0.1)">·</span>
+        <span style="font-size:8px;letter-spacing:0.38em;text-transform:uppercase;color:rgba(232,228,220,0.25);padding:0 32px;">Belgique</span>
+        <span style="color:rgba(255,255,255,0.1)">·</span>
+      </template>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════
+     EXPERTISE
+═══════════════════════ -->
+<section class="py-24 md:py-32 px-8 md:px-12" style="border-bottom:1px solid var(--border);">
+  <div class="max-w-[1300px] mx-auto grid grid-cols-1 md:grid-cols-[1fr_1.4fr] gap-16 md:gap-24 items-start">
+
     <div class="reveal">
-      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-white/10 mb-6 bg-white/5">
-        <span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
-        <span class="text-[10px] font-bold uppercase tracking-widest text-gray-400">Disponible Immédiatement</span>
+      <p class="section-label mb-5">Ce que je fais</p>
+      <h2 class="f-display font-light text-white leading-[0.9]" style="font-size:clamp(2.6rem,5vw,4.5rem)">
+        Expertise &<br><span style="font-style:italic">Savoir-faire</span>
+      </h2>
+    </div>
+
+    <div>
+      <!-- Stat rows -->
+      <div class="stat-row reveal">
+        <span class="f-mono text-[12px] tracking-wide" style="color:var(--muted)">Développement Frontend</span>
+        <span class="f-display font-light text-white text-[28px]" style="font-style:italic">React · Next.js</span>
       </div>
-      <h1 class="text-5xl md:text-8xl font-extrabold mb-8 leading-[1.1] text-gradient">
-        Développeur Web & Technicien IT.
-      </h1>
-      <p class="text-gray-400 text-lg md:text-xl max-w-lg leading-relaxed mb-10">
-        Basé en Belgique, j'allie <span class="text-white">maintenance technique</span> et <span class="text-white">développement d'interfaces</span> pour créer des solutions digitales robustes. Diplômé et passionné.
+      <div class="stat-row reveal reveal-delay-1">
+        <span class="f-mono text-[12px] tracking-wide" style="color:var(--muted)">Backend & Base de données</span>
+        <span class="f-display font-light text-white text-[28px]" style="font-style:italic">Firebase · Node</span>
+      </div>
+      <div class="stat-row reveal reveal-delay-2">
+        <span class="f-mono text-[12px] tracking-wide" style="color:var(--muted)">Technicien IT</span>
+        <span class="f-display font-light text-white text-[28px]" style="font-style:italic">Réseaux · Matériel</span>
+      </div>
+      <div class="stat-row reveal reveal-delay-3">
+        <span class="f-mono text-[12px] tracking-wide" style="color:var(--muted)">Mobile</span>
+        <span class="f-display font-light text-white text-[28px]" style="font-style:italic">React Native · Expo</span>
+      </div>
+
+      <!-- Tags -->
+      <div class="mt-8 reveal">
+        <p class="section-label mb-4">Stack complet</p>
+        <div style="margin: -3px;">
+          <span class="tag">TypeScript</span><span class="tag">Tailwind CSS</span><span class="tag">Framer Motion</span>
+          <span class="tag">Python · Flask</span><span class="tag">Stripe</span><span class="tag">Nodemailer</span>
+          <span class="tag">Git</span><span class="tag">Figma</span><span class="tag">Linux</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════
+     PROJECTS
+═══════════════════════ -->
+<section id="projects" class="py-24 md:py-32 px-8 md:px-12">
+  <div class="max-w-[1300px] mx-auto">
+
+    <div class="flex items-end justify-between mb-16">
+      <div class="reveal">
+        <p class="section-label mb-5">Réalisations sélectionnées</p>
+        <h2 class="f-display font-light text-white leading-[0.9]" style="font-size:clamp(2.6rem,5vw,4.5rem)">
+          Projets
+        </h2>
+      </div>
+    </div>
+
+    <div id="projects-container" class="grid md:grid-cols-2 lg:grid-cols-3 gap-4"></div>
+  </div>
+</section>
+
+<!-- ═══════════════════════
+     CONTACT
+═══════════════════════ -->
+<section id="contact" class="py-24 md:py-32 px-8 md:px-12" style="border-top:1px solid var(--border);">
+  <div class="max-w-[1300px] mx-auto grid grid-cols-1 md:grid-cols-[1fr_1.2fr] gap-16 md:gap-24">
+
+    <!-- Left -->
+    <div class="reveal">
+      <p class="section-label mb-6">Parlons d'un projet</p>
+      <h2 class="f-display font-light text-white leading-[0.88] mb-8" style="font-size:clamp(2.6rem,5vw,4.5rem)">
+        Un projet ?<br>
+        <span style="font-style:italic">Écrivez-moi.</span>
+      </h2>
+      <p class="f-mono text-[12.5px] leading-[1.85] mb-10" style="color:var(--muted);max-width:300px;">
+        Disponible pour des missions freelance, du développement web, et du support IT en Belgique.
       </p>
-      <div class="flex flex-wrap gap-5">
-        <a href="#projects" class="bg-white text-black px-10 py-4 rounded-xl font-bold text-sm hover:scale-105 transition transform duration-300">Voir mon Portfolio</a>
-        <div class="flex items-center gap-4 px-6 text-gray-400 font-mono text-sm">
-           <span id="age" class="text-white font-bold"></span> ans / Belgique
-        </div>
+      <!-- Social links -->
+      <div style="display:flex;flex-direction:column;gap:0;">
+        <a href="https://github.com/ryansdee" target="_blank"
+          style="display:flex;align-items:center;justify-content:space-between;padding:14px 0;border-bottom:1px solid var(--border);text-decoration:none;color:var(--muted);transition:color .25s ease;"
+          class="group-link" onmouseover="this.style.color='var(--text)'" onmouseout="this.style.color='var(--muted)'">
+          <span class="f-mono" style="font-size:10px;letter-spacing:0.18em;text-transform:uppercase;">GitHub</span>
+          <svg width="11" height="11" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M7 17L17 7M17 7H7M17 7v10"/>
+          </svg>
+        </a>
+        <a href="https://www.linkedin.com/in/ryan-deschuyteneer-2b1395201/" target="_blank"
+          style="display:flex;align-items:center;justify-content:space-between;padding:14px 0;border-bottom:1px solid var(--border);text-decoration:none;color:var(--muted);transition:color .25s ease;"
+          onmouseover="this.style.color='var(--text)'" onmouseout="this.style.color='var(--muted)'">
+          <span class="f-mono" style="font-size:10px;letter-spacing:0.18em;text-transform:uppercase;">LinkedIn</span>
+          <svg width="11" height="11" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M7 17L17 7M17 7H7M17 7v10"/>
+          </svg>
+        </a>
       </div>
     </div>
 
-    <div class="relative reveal delay-300 flex justify-center">
-      <div class="absolute -inset-10 bg-white/5 blur-[100px] rounded-full"></div>
-      <img src="https://i.ibb.co/JWS9FLj2/Ryan.png" alt="Ryan Deschuyteneer" 
-           class="relative z-10 w-full max-w-md rounded-[2.5rem] grayscale hover:grayscale-0 transition duration-1000 shadow-2xl border border-white/10 profile-glow">
-    </div>
-  </div>
-</section>
-
-<section class="py-20 px-6 border-y border-white/5 bg-black/20">
-  <div class="max-w-7xl mx-auto flex flex-wrap justify-center md:justify-between gap-12">
-    <div class="text-center md:text-left">
-      <div class="text-3xl font-bold mb-1">Stack Moderne</div>
-      <div class="text-gray-500 text-xs uppercase tracking-widest font-bold">React, Tailwind, Node.js</div>
-    </div>
-    <div class="text-center md:text-left">
-      <div class="text-3xl font-bold mb-1">Infrastructure</div>
-      <div class="text-gray-500 text-xs uppercase tracking-widest font-bold">Maintenance & Réseaux PC</div>
-    </div>
-    <div class="text-center md:text-left">
-      <div class="text-3xl font-bold mb-1">Polyvalence</div>
-      <div class="text-gray-500 text-xs uppercase tracking-widest font-bold">Création & Support IT</div>
-    </div>
-  </div>
-</section>
-
-<section id="projects" class="py-32 px-6">
-  <div class="max-w-7xl mx-auto">
-    <div class="mb-20">
-      <h2 class="text-4xl md:text-6xl font-bold mb-6">Réalisations</h2>
-      <div class="h-1 w-20 bg-white rounded-full"></div>
-    </div>
-    
-    <div id="projects-container" class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-      </div>
-  </div>
-</section>
-
-<section id="contact" class="py-32 px-6 relative">
-  <div class="max-w-4xl mx-auto glass rounded-[3rem] p-12 md:p-20 relative overflow-hidden">
-    <div class="absolute top-0 right-0 p-10 opacity-10">
-      <svg width="200" height="200" fill="currentColor" viewBox="0 0 24 24"><path d="M21 8V7l-3 2-2-1-3 2-3-2-2 1-3-2v1l3 2 2-1 3 2 3-2 2 1 3-2z"/></svg>
-    </div>
-    
-    <div class="relative z-10">
-      <h2 class="text-4xl md:text-5xl font-bold mb-8 text-center">Un projet ? <br><span class="text-gray-500">Écrivez-moi.</span></h2>
-      
-      <form id="contact-form" action="https://picklink.be/contact-porto.php" method="POST" class="space-y-6">
-        <div class="grid md:grid-cols-2 gap-6">
-          <input type="text" name="name" placeholder="Votre Nom" required class="w-full px-6 py-4 rounded-2xl text-white">
-          <input type="email" name="email" placeholder="Email Professionnel" required class="w-full px-6 py-4 rounded-2xl text-white">
+    <!-- Form -->
+    <div class="reveal reveal-delay-1">
+      <form id="contact-form" action="https://picklink.be/contact-porto.php" method="POST" class="space-y-8">
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-8">
+          <div>
+            <label style="display:block;font-size:8px;letter-spacing:0.38em;text-transform:uppercase;color:rgba(232,228,220,0.3);margin-bottom:10px;">Nom</label>
+            <input type="text" name="name" placeholder="Votre nom" required class="form-input">
+          </div>
+          <div>
+            <label style="display:block;font-size:8px;letter-spacing:0.38em;text-transform:uppercase;color:rgba(232,228,220,0.3);margin-bottom:10px;">Email</label>
+            <input type="email" name="email" placeholder="votre@email.com" required class="form-input">
+          </div>
         </div>
-        <textarea name="message" rows="5" placeholder="Parlez-moi de votre besoin..." required class="w-full px-6 py-4 rounded-2xl text-white resize-none"></textarea>
-        
-        <button type="submit" class="w-full bg-white text-black py-5 rounded-2xl font-extrabold text-sm uppercase tracking-widest hover:bg-gray-200 transition-all duration-300 transform hover:scale-[1.02]">
-          Envoyer le message
+        <div>
+          <label style="display:block;font-size:8px;letter-spacing:0.38em;text-transform:uppercase;color:rgba(232,228,220,0.3);margin-bottom:10px;">Message</label>
+          <textarea name="message" rows="5" placeholder="Parlez-moi de votre besoin..." required class="form-input resize-none"></textarea>
+        </div>
+        <button type="submit" class="btn-solid w-full justify-center">
+          <span id="submit-label">Envoyer le message</span>
+          <svg id="submit-icon" width="12" height="12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M5 12h14M12 5l7 7-7 7"/>
+          </svg>
         </button>
+        <div id="form-status" class="text-center f-mono" style="font-size:9px;letter-spacing:0.2em;text-transform:uppercase;min-height:20px;"></div>
       </form>
-      <div id="form-status" class="mt-6 text-center text-sm font-medium tracking-wide"></div>
     </div>
   </div>
 </section>
 
-<footer class="py-12 border-t border-white/5 text-center text-gray-500 text-xs uppercase tracking-[0.3em]">
-  <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-6">
-    <p>&copy; 2022 - <span id="year"></span> Ryan Deschuyteneer</p>
-    <div class="flex gap-8 font-bold text-white">
-      <a href="https://github.com/ryansdee" target="_blank" class="hover:text-gray-400 transition">GitHub</a>
-      <a href="https://www.linkedin.com/in/ryan-deschuyteneer-2b1395201/" target="_blank" class="hover:text-gray-400 transition">LinkedIn</a>
-    </div>
+<!-- ═══════════════════════
+     FOOTER
+═══════════════════════ -->
+<footer style="border-top:1px solid var(--border);padding:28px 0;">
+  <div class="max-w-[1300px] mx-auto px-8 md:px-12 flex flex-col md:flex-row justify-between items-center gap-4">
+    <span class="f-mono" style="font-size:9px;letter-spacing:0.3em;text-transform:uppercase;color:rgba(232,228,220,0.25);">
+      © 2022 — <span id="year"></span> Ryan Deschuyteneer
+    </span>
+    <span class="f-display font-light text-white" style="font-size:22px;font-style:italic;color:rgba(255,255,255,0.12)">RD.</span>
+    <span class="f-mono" style="font-size:9px;letter-spacing:0.3em;text-transform:uppercase;color:rgba(232,228,220,0.25);">
+      Belgique — Développeur Web & IT
+    </span>
   </div>
 </footer>
 
 <script>
-// Calcul de l'âge automatique
-function calculateAge() {
-  const birthDate = new Date('2004-08-02');
-  const today = new Date();
-  let age = today.getFullYear() - birthDate.getFullYear();
-  if (today.getMonth() < birthDate.getMonth() || (today.getMonth() === birthDate.getMonth() && today.getDate() < birthDate.getDate())) age--;
-  document.getElementById('age').textContent = age;
+/* ── Cursor ── */
+const cursor = document.getElementById('cursor');
+const dot    = cursor.querySelector('.dot');
+const ring   = cursor.querySelector('.ring');
+let mx = 0, my = 0, rx = 0, ry = 0;
+
+window.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
+
+function animateCursor() {
+  rx += (mx - rx) * 0.14;
+  ry += (my - ry) * 0.14;
+  cursor.style.transform = `translate(${mx}px, ${my}px)`;
+  ring.style.transform   = `translate(${rx - mx}px, ${ry - my}px) translate(-50%,-50%)`;
+  requestAnimationFrame(animateCursor);
 }
-calculateAge();
+animateCursor();
 
-// Année actuelle dans le footer
-document.getElementById('year').textContent = new Date().getFullYear();
-
-// Animation Navbar au Scroll
+/* ── Navbar scroll ── */
 window.addEventListener('scroll', () => {
-  const nav = document.getElementById('navbar');
-  if (window.scrollY > 50) {
-    nav.classList.add('glass', 'py-4');
-    nav.classList.remove('py-6');
-  } else {
-    nav.classList.remove('glass', 'py-4');
-    nav.classList.add('py-6');
-  }
+  document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 60);
 });
 
-// Rendu des Projets (Utilise tes données réelles)
+/* ── Age ── */
+function calcAge() {
+  const b = new Date('2004-08-02'), t = new Date();
+  let a = t.getFullYear() - b.getFullYear();
+  if (t.getMonth() < b.getMonth() || (t.getMonth() === b.getMonth() && t.getDate() < b.getDate())) a--;
+  const el = document.getElementById('age-badge');
+  if (el) el.textContent = `${a} ans`;
+}
+calcAge();
+document.getElementById('year').textContent = new Date().getFullYear();
+
+/* ── Marquee duplication ── */
+(function() {
+  const tpl = document.getElementById('mq-tpl');
+  const inner = document.querySelector('.mq-inner > div');
+  const frag = tpl.content.cloneNode(true);
+  inner.appendChild(frag);
+  const frag2 = tpl.content.cloneNode(true);
+  inner.appendChild(frag2);
+  tpl.remove();
+})();
+
+/* ── Reveal on scroll ── */
+function initReveal() {
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('active'); });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+}
+initReveal();
+
+/* ── Load projects ── */
 async function loadProjects() {
   const container = document.getElementById('projects-container');
-
   try {
-    const response = await fetch('./projects.json');
-    if (!response.ok) throw new Error('Impossible de charger projects.json');
-
-    const projects = await response.json();
-
-    container.innerHTML = projects.map((p) => `
-      <div class="reveal group glass rounded-[2.5rem] overflow-hidden p-4 glass-hover transition-all duration-500">
-        <div class="h-56 rounded-[1.8rem] bg-zinc-900 mb-6 relative overflow-hidden shadow-inner">
-          <img src="${p.image}" alt="${p.title}" 
-               class="w-full h-full object-cover opacity-60 group-hover:opacity-100 group-hover:scale-105 transition duration-700 grayscale group-hover:grayscale-0"
-               onerror="this.parentElement.innerHTML='<div class=\\'flex items-center justify-center h-full text-zinc-700\\'>📁 Image non trouvée</div>'">
+    const res = await fetch('./projects.json');
+    if (!res.ok) throw new Error();
+    const projects = await res.json();
+    container.innerHTML = projects.map((p, i) => `
+      <div class="project-card reveal" style="transition-delay:${i * 0.08}s">
+        <div class="thumb">
+          <img src="${p.image}" alt="${p.title}"
+               onerror="this.parentElement.innerHTML='<div style=\\'height:100%;display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,0.15);font-size:9px;letter-spacing:0.2em;text-transform:uppercase\\'>Image non trouvée</div>'">
+          <span class="num">${String(i+1).padStart(2,'0')}</span>
         </div>
-        <div class="px-4 pb-4">
-          <h3 class="text-xl font-bold mb-3 text-white">${p.title}</h3>
-          <p class="text-gray-400 text-sm leading-relaxed mb-6 h-12 overflow-hidden">${p.description}</p>
-          <a href="${p.link}" target="_blank" class="inline-flex items-center text-xs font-bold uppercase tracking-widest text-white hover:gap-3 transition-all duration-300">
-            Voir le projet <span class="ml-2 text-lg">→</span>
+        <div style="padding:20px 22px 24px;">
+          <p style="font-size:8px;letter-spacing:0.38em;text-transform:uppercase;color:rgba(232,228,220,0.25);margin-bottom:8px;">Projet 0${i+1}</p>
+          <h3 style="font-family:'Fraunces',serif;font-weight:200;font-size:20px;color:#e8e4dc;margin-bottom:8px;line-height:1.2;">${p.title}</h3>
+          <p style="font-size:11.5px;line-height:1.75;color:rgba(232,228,220,0.42);margin-bottom:18px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;">${p.description}</p>
+          <a href="${p.link}" target="_blank"
+             style="display:inline-flex;align-items:center;gap:8px;font-size:9px;letter-spacing:0.22em;text-transform:uppercase;color:rgba(232,228,220,0.5);text-decoration:none;transition:color .25s ease;"
+             onmouseover="this.style.color='#e8e4dc'" onmouseout="this.style.color='rgba(232,228,220,0.5)'">
+            Voir le projet
+            <svg width="10" height="10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M7 17L17 7M17 7H7M17 7v10"/>
+            </svg>
           </a>
         </div>
       </div>
     `).join('');
-
-    setTimeout(initReveal, 100);
-
-  } catch (err) {
-    console.error(err);
-    container.innerHTML = "<p class='text-red-400'>Erreur lors du chargement des projets.</p>";
+    setTimeout(initReveal, 50);
+  } catch {
+    container.innerHTML = `<p style="color:rgba(232,228,220,0.3);font-size:10px;letter-spacing:0.2em;text-transform:uppercase;">Erreur lors du chargement des projets.</p>`;
   }
 }
-
-
-// Observer pour les animations au scroll
-function initReveal() {
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('active');
-      }
-    });
-  }, { threshold: 0.1 });
-
-  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-}
-
 loadProjects();
 
-// Gestion Formulaire Contact
+/* ── Contact form ── */
 document.getElementById('contact-form').addEventListener('submit', async (e) => {
   e.preventDefault();
   const status = document.getElementById('form-status');
-  status.innerHTML = "<span class='text-gray-400'>Transmission en cours...</span>";
-  
+  const label  = document.getElementById('submit-label');
+  label.textContent = 'Envoi en cours...';
+  status.style.color = 'rgba(232,228,220,0.4)';
+  status.textContent = '';
   try {
-    const response = await fetch(e.target.action, {
-      method: 'POST',
-      body: new FormData(e.target)
-    });
-    if(response.ok) {
-      status.innerHTML = "<span class='text-green-400 font-bold uppercase text-[10px] tracking-widest'>Message transmis avec succès.</span>";
+    const res = await fetch(e.target.action, { method: 'POST', body: new FormData(e.target) });
+    if (res.ok) {
+      label.textContent = 'Envoyer le message';
+      status.style.color = 'rgba(74,222,128,0.7)';
+      status.textContent = 'Message transmis avec succès.';
       e.target.reset();
-    } else { throw new Error(); }
+    } else throw new Error();
   } catch {
-    status.innerHTML = "<span class='text-red-400 font-bold uppercase text-[10px] tracking-widest'>Erreur lors de l'envoi.</span>";
+    label.textContent = 'Envoyer le message';
+    status.style.color = 'rgba(239,68,68,0.6)';
+    status.textContent = 'Erreur lors de l\'envoi — réessayez.';
   }
 });
 </script>
-
 </body>
 </html>
